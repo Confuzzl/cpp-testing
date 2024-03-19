@@ -1,8 +1,7 @@
 export module test_module;
 
-export import :a;
-export import :b;
+export template <typename T> struct tem;
 
-export void module_test();
-
-export const int global1 = 11, global2 = 17;
+export template <> struct tem<int> {
+  void foo();
+};
