@@ -151,8 +151,12 @@ int main() {
   println(v);
   println("cutoff: {}", cutoff);
 
-  auto part =
-      std::partition(v.begin(), v.end(), [cutoff](int i) { return i < i; });
+  auto part = std::partition(v.begin(), v.end(),
+                             [cutoff](int i) { return i < cutoff; });
+  // println(v);
+  //  for (auto it = v.begin(); it != part; it++) {
+  //    println(*it);
+  //  }
   std::vector<int> left(v.begin(), part);
   println("left: {}", left);
   std::vector<int> right(part, v.end());
