@@ -145,20 +145,21 @@ int main() {
   for (int i = 0; i < 10; i++)
     v.emplace_back(random_int(-10, 10));
 
-  const double cutoff =
-      std::reduce(v.begin(), v.end()) / static_cast<double>(v.size());
-
   println(v);
-  println("cutoff: {}", cutoff);
+  // auto range = std::views::counted(v.begin() + 4, 5);
+  auto range = std::ranges::subrange(v.begin(), v.begin() + 3);
+  println(std::vector<int>(range.begin(), range.end()));
 
-  auto part = std::partition(v.begin(), v.end(),
-                             [cutoff](int i) { return i < cutoff; });
+  // const double cutoff =
+  //     std::reduce(v.begin(), v.end()) / static_cast<double>(v.size());
+
   // println(v);
-  //  for (auto it = v.begin(); it != part; it++) {
-  //    println(*it);
-  //  }
-  std::vector<int> left(v.begin(), part);
-  println("left: {}", left);
-  std::vector<int> right(part, v.end());
-  println("right: {}", right);
+  // println("cutoff: {}", cutoff);
+
+  // auto part = std::partition(v.begin(), v.end(),
+  //                            [cutoff](int i) { return i < cutoff; });
+  // std::vector<int> left(v.begin(), part);
+  // println("left: {}", left);
+  // std::vector<int> right(part, v.end());
+  // println("right: {}", right);
 }
